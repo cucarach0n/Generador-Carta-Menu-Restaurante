@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js" integrity="sha512-dBB2PGgYedA6vzize7rsf//Q6iuUuMPvXCDybHtZP3hQXCPCD/YVJXK3QYZ2v0p7YCfVurqr8IdcSuj4CCKnGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvasCarta" width="794" height="1123" style="border: red 5px dotted;"></canvas>
+    	<!--
+    price start
+    ============================ -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<input type="button" id="btnDownload" onclick="print();" value="Download" class="btn btn-primary">
+			</div>
+		</div>
+	</div>
+	<div class="container" >
+		<div class="row justify-content-center">
+			<div class="col-10">
+				<div class="container justify-content-center" id="htmlToPdf">
+					<div class="row justify-content-center">
+						<div class="col-2">
+							<figure class="figure">
+								<img src="" id="img" class="img-thumbnail" alt="Logo Chef">
+							</figure>
+						</div>
+					</div>
+					<!--<div class="row justify-content-center">
+						<div class="col-7 ">
+			
+							<h1 class="display-1" style="text-align: center;">
+								<span>El Mixto</span>
+							</h1>
+						</div>
+					</div>-->
+					<div class="row justify-content-center">
+						<div class="col-9">
+							<h2 class="display-3">
+								<span>Entradas</span>
+							</h2>
+						</div>
+						<div class="col-9" style="margin-top: -19px;">
+							<hr style="color: #0056b2;" />
+						</div>
+					</div>
+			
+					<div class="row justify-content-center">
+			
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+					</div>
+			
+					<div class="row justify-content-center">
+						<div class="col-9">
+							<h2 class="display-4 ">
+								<span>Segundos</span>
+							</h2>
+						</div>
+						<div class="col-9" style="margin-top: -19px;">
+							<hr style="color: #0056b2;" />
+						</div>
+					</div>
+					<div class="row justify-content-center">
+			
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+					</div>
+			
+					<div class="row justify-content-center">
+						<div class="col-9">
+							<h2 class="display-4">
+								<span>Extras</span>
+							</h2>
+						</div>
+						<div class="col-9" style="margin-top: -19px;">
+							<hr style="color: #0056b2;" />
+						</div>
+					</div>
+					<div class="row justify-content-center">
+			
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+						<div class="col-6 lead">
+							Arroz con pollo
+						</div>
+						<div class="col-2 text-center lead">
+							$10.00
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="logoChef.js"></script>
+	<script type="text/javascript">
+		/*window.onload = function(){
+			document.getElementById("btnDownload").addEventListener("click", function(){
+
+
+				var element = document.getElementById("htmlToPdf");
+				var opt = {
+					        margin : [0, 0, -2, 0],
+							filename:'myfile.pdf',
+							image:{ type: 'jpeg', quality: 0.98 },
+							html2canvas:  { 
+								crossOrigin: 'anonymous',
+								scale: 1.0,
+								allowTaint: true,
+    							foreignObjectRendering: true },
+							jsPDF:{ unit: 'in', format: 'a4', orientation: 'portrait' }
+							};
+
+				html2pdf().set(opt).from(element).save().catch(function(error) {
+					console.error(error);
+				});
+			});
+		}*/
+		function print(){
+			var canvasElement = document.getElementById("canvasCarta");
+			var imgData = canvasElement.toDataURL("image/png", 1);
+			var pdf = new jsPDF({
+				userUnit: 150,
+			});
+
+			pdf.addImage(imgData, 'JPEG', 0, 0);
+			pdf.save("download.pdf");
+		}
+		var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
+		var arraySegundos = [['Prueba1',7],['Prueba2',8]];
+		var arrayExtras = [['Prueba1',7],['Prueba2',8]];
+		function draw(){
+			var canvasCarta = document.getElementById("canvasCarta");
+			/*const imagenChef = new Image();
+			imagenChef.src = "imagenes/logo_chef.png";*/
+			if (canvasCarta.getContext) {
+				
+				var alturaText = 0;
+				const ctx = canvasCarta.getContext('2d');
+				//cargando imagen del chef
+				imagenChef.onload = () => {
+					ctx.drawImage(imagenChef, 300, 50,200,200);//530,50,200,200
+				}
+				//escribiendo el titulo del restaurante
+				ctx.font = 'italic 3em "Fira Sans", serif';
+				ctx.strokeStyle = "yellow"; 
+				ctx.lineWidth = 3;
+				ctx.strokeText('EL MIXTO', 280, 285);//510,285
+				//rellenando el titulo del restaurante
+				ctx.fillStyle = "green";
+				ctx.fillText('EL MIXTO', 280, 285);
+				//escribiendo seccion de la carta entrada
+				ctx.font = '24px cursive';
+				ctx.fillStyle = '#0056b2';
+				ctx.fillText('ENTRADAS', 120, 350);//270,350
+				//dibujando linea de separacion de seccion de la carta entrada
+				ctx.beginPath();
+				ctx.lineWidth = 0.2;
+				ctx.moveTo(110, 355);
+				ctx.lineTo(650, 355);
+				ctx.strokeStyle = 'black';
+				ctx.stroke();
+				for(var i = 0; i < arrayEntradas.length; i++){
+					ctx.font = '20px cursive';
+					ctx.fillStyle = 'gray';
+					alturaText = 390 + (i * 30);//380
+					ctx.fillText(arrayEntradas[i], 150, alturaText);//300
+				}
+				//escribiendo seccion de la carta segundo
+
+				ctx.font = '24px cursive';
+				ctx.fillStyle = '#0056b2';
+				alturaText += 50;//30
+				ctx.fillText('SEGUNDOS', 120, alturaText);
+				//dibujando linea de separacion de seccion de la carta segundo
+				ctx.beginPath();
+				ctx.lineWidth = 0.2;
+				alturaText += 5;
+				ctx.moveTo(110, alturaText);
+				ctx.lineTo(650, alturaText);
+				ctx.strokeStyle = 'black';
+				ctx.stroke();
+				alturaText += 35;//25
+				for(var i = 0; i < arraySegundos.length; i++){
+					ctx.font = '20px cursive';
+					ctx.fillStyle = 'gray';
+					alturaText += (i * 30);
+					ctx.fillText(arraySegundos[i][0], 300, alturaText);
+				}
+				//escribiendo seccion de la carta extras
+				ctx.font = '24px cursive';
+				ctx.fillStyle = '#0056b2';
+				alturaText += 50;//30
+				ctx.fillText('EXTRAS', 120, alturaText);
+				//dibujando linea de separacion de seccion de la carta extras
+				ctx.beginPath();
+				ctx.lineWidth = 0.2;
+				alturaText += 5;
+				ctx.moveTo(110, alturaText);
+				ctx.lineTo(650, alturaText);
+				ctx.strokeStyle = 'black';
+				ctx.stroke();
+				alturaText += 35;
+				for(var i = 0; i < arrayExtras.length; i++){
+					ctx.font = '20px cursive';
+					ctx.fillStyle = 'gray';
+					alturaText += (i * 30);
+					ctx.fillText(arrayExtras[i][0], 300, alturaText);
+				}
+			} else {
+				alert('Your browser does not support the HTML5 canvas tag.');
+			}
+
+		}
+		window.onload = draw();
+		
+		
+				
+	</script>
+</body>
+</html>

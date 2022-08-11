@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<canvas id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
+    	<!--
+    price start
+    ============================ -->
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<input type="button" id="btnDownload" onclick="print();" value="Download" class="btn btn-primary">
+			</div>
+			<div class="col-4">
+				<input type="button" id="btnLimpiar" onclick="limpiarCanvas();" value="Limpiar" class="btn btn-primary">
+			</div>
+			<div class="col-4">
+				<input type="button" id="btnDibujar" onclick="draw();" value="Dibujar" class="btn btn-primary">
+			</div>
+		</div>
+	</div>
+	<script src="imagenFondo.js"></script>
+	<script type="text/javascript">
+		function limpiarCanvas() {
+			var canvasCarta = document.getElementById("canvasCarta");
+			const ctx = canvasCarta.getContext('2d');
+			ctx.clearRect(0, 0, 1123, 794);
+		
+		}
+		function print(){
+			var canvasElement = document.getElementById("canvasCarta");
+			var imgData = canvasElement.toDataURL("image/png", 1);
+			var pdf = new jsPDF('l');
+
+			pdf.addImage(imgData, 'JPEG', 0, 0);
+			pdf.save("download.pdf");
+		}
+		var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
+		var arraySegundos = [['Prueba1',7],['Prueba2',8]];
+		var arrayExtras = [['Prueba1',7],['Lomo Saltado',8],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
+		var arrayBebidas = [['Prueba1',7],['Prueba2',8]];
+		function draw(){
+			var BerlinSansFBDemiBold = new FontFace('BerlinSansFBDemiBold', 'url(fonts/BerlinSansFBDemiBold.ttf)');
+			BerlinSansFBDemiBold.load().then(function(font){
+				document.fonts.add(font);
+				var canvasCarta = document.getElementById("canvasCarta");
+				if (canvasCarta.getContext) {
+				
+					var alturaText = 0;
+					const ctx = canvasCarta.getContext('2d');
+
+					ctx.drawImage(imagenFondo, -160, -100,1430,900);//530,50,200,200
+
+					//escribiendo seccion de la carta entrada
+					ctx.font = '800 30px BerlinSansFBDemiBold';
+					ctx.fillStyle = 'black';
+					ctx.fillText('ENTRADAS', 110, 270);//270,350
+					//dibujando linea de separacion de seccion de la carta entrada
+					ctx.beginPath();
+					ctx.lineCap="round";
+					ctx.lineWidth = 1;
+					ctx.moveTo(70, 275);
+					ctx.lineTo(300, 275);
+					ctx.moveTo(75, 278);
+					ctx.lineTo(295, 278);
+					ctx.strokeStyle = '#000000';
+					ctx.stroke();
+
+					for(var i = 0; i < arrayEntradas.length; i++){
+						ctx.font = 'bold 20px arial';
+						ctx.fillStyle = 'black';
+						alturaText = 310 + (i * 30);//380
+						ctx.fillText(arrayEntradas[i], 50, alturaText);//300
+					}
+					//escribiendo seccion de la carta segundo
+
+					ctx.font = '800 30px BerlinSansFBDemiBold';
+					ctx.fillStyle = 'black';
+					alturaText += 50;//30
+					ctx.fillText('SEGUNDOS', 110, alturaText);
+					//dibujando linea de separacion de seccion de la carta segundo
+					ctx.beginPath();
+					ctx.lineCap="round";
+					ctx.lineWidth = 1;
+					alturaText += 5;
+					ctx.moveTo(70, alturaText);
+					ctx.lineTo(310, alturaText);
+					ctx.moveTo(75, alturaText + 3);
+					ctx.lineTo(305, alturaText + 3);
+					ctx.strokeStyle = 'black';
+					ctx.stroke();
+					alturaText += 35;//25
+					for(var i = 0; i < arraySegundos.length; i++){
+						ctx.font = 'bold 20px arial';
+						ctx.fillStyle = 'black';
+						alturaText += (i * 30);
+						ctx.fillText(arraySegundos[i][0], 50, alturaText);
+					}
+					//escribiendo seccion de la carta extras
+					ctx.font = '800 30px BerlinSansFBDemiBold';
+					ctx.fillStyle = 'black';
+					ctx.fillText('EXTRAS', 510, 300);//380
+					//dibujando linea de separacion de seccion de la carta extras
+					ctx.beginPath();
+					ctx.lineWidth = 1;
+					ctx.lineCap="round";
+					ctx.moveTo(470, 305);
+					ctx.lineTo(645, 305);
+					ctx.moveTo(475, 308);
+					ctx.lineTo(640, 308);
+					ctx.strokeStyle = 'black';
+					ctx.stroke();
+					for(var i = 0; i < arrayExtras.length; i++){
+						//dibujar elipse para el precio de los extras
+						ctx.beginPath();
+						ctx.ellipse(702, 333 + (i * 30), 23, 13, 0, 0, 2 * Math.PI);
+						ctx.fillStyle = '#C1D92E';
+						ctx.fill();
+						ctx.strokeStyle = 'green';
+						ctx.stroke();
+						//escribiendo precio
+						ctx.font = 'normal bold 20px arial';
+						ctx.fillStyle = 'black';
+						ctx.fillText(arrayExtras[i][0], 400,340+ (i * 30));
+						
+						var tamañoExtra = arrayExtras[i][0].length;
+						var guiones = '';
+						for(var j = 0; j < (25 - tamañoExtra); j++){
+							guiones += '. ';
+						}
+						ctx.fillText(guiones + ' S/.' + arrayExtras[i][1], 400+(tamañoExtra * 11),340+ (i * 30));
+						
+
+					}
+					//escribiendo seccion de la carta bebidas
+					ctx.font = '800 30px BerlinSansFBDemiBold';
+					ctx.fillStyle = 'black';
+					ctx.fillText('BEBIDAS', 880, 50);
+					//dibujando linea de separacion de seccion de la carta bebidas
+					ctx.beginPath();
+					ctx.lineCap="round";
+					ctx.lineWidth = 1;
+					ctx.moveTo(840, 55);
+					ctx.lineTo(1030, 55);
+					ctx.moveTo(845, 58);
+					ctx.lineTo(1025, 58);
+					ctx.strokeStyle = 'black';
+					ctx.stroke();
+					for(var i = 0; i < arrayBebidas.length; i++){
+						//dibujar elipse para el precio de las bebidas
+						ctx.beginPath();
+						ctx.ellipse(1082, 83 + (i * 30), 23, 13, 0, 0, 2 * Math.PI);
+						ctx.fillStyle = '#C1D92E';
+						ctx.fill();
+						ctx.strokeStyle = 'green';
+						ctx.stroke();
+						ctx.font = 'bold 20px arial';
+						ctx.fillStyle = 'black';
+						ctx.fillText(arrayBebidas[i][0], 780,90+ (i * 30));
+						var tamañoBebida = arrayBebidas[i][0].length;
+						var guiones = '';
+						for(var j = 0; j < (25 - tamañoBebida); j++){
+							guiones += '. ';
+						}
+						ctx.fillText(guiones + ' S/.' + arrayBebidas[i][1], 780+(tamañoBebida * 11),90+ (i * 30));
+					}
+					
+				} else {
+					alert('Your browser does not support the HTML5 canvas tag.');
+				}
+			});
+
+			
+
+		}
+		window.onload = draw();
+		
+		
+				
+	</script>
+</body>
+</html>
