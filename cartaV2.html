@@ -7,30 +7,308 @@
 	
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+	
 	<title>Document</title>
 	<link rel="stylesheet" href="style.css">
+	<style>
+		@media (max-width: 992px) {
+		  #generador {
+			border-bottom-style: ridge !important;
+		  }
+		}
+		@media (min-width: 993px) {
+		  #generador {
+			border-right-style: ridge !important;
+		  }
+		}
+	</style>
 </head>
 <body>
-	<canvas id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
+	
     	<!--
     price start
     ============================ -->
-	<div class="container">
-		<div class="row">
-			<div class="col-4">
-				<input type="button" id="btnDownload" onclick="print();" value="Download" class="btn btn-primary">
+	<div class="container ">
+		<div class="row justify-content-center border border-success rounded border-2" >
+			<div id="generador" class="col-12 col-lg-7 " style="padding: 10px;">
+				<div class="container ">
+					<div class="row justify-content-center">
+						<div class="col-12 text-center">
+							<h1 class="display-3">EL MIXTO</h1>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-6 col-sm-3 text-center">
+							<img src="imagenes/logo_chef.png" class="img-fluid" alt="Logo el Mixto">
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-12 text-center">
+							<h1 class="display-6" style="margin-bottom: 0px;">Generador de Carta de Menu</h1>
+						</div>
+						<hr class="col-9"style="margin-bottom: 5px;">
+						<hr class="col-7">
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-12 col-sm-12 col-md-2  text-center">
+							<label for="inputPrecio" class="form-label">Precio Menu</label>
+						</div>
+						<div class="col-9 col-sm-6 col-md-5 col-lg-6 col-xl-5 text-end">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								  <span class="input-group-text">S/.</span>
+								</div>
+								
+								<input class="form-control" list="datalistPrecio" id="inputPrecio" value="7.50" placeholder="Precio...">
+								<div class="input-group-append">
+									<input type="button" id="btnCambiarPrecio" onclick="" value="Cambiar" class="btn btn-info">
+								</div>
+								<datalist id="datalistPrecio">
+									<option value="6">
+									<option value="6.5">
+									<option value="7">
+									<option value="7.5">
+									<option value="8">
+									<option value="8.5">
+									<option value="9">
+									<option value="9.5">
+									<option value="10">
+								</datalist>
+							  </div>
+
+							
+						</div>
+						<!--<div class="col-6 col-sm-2 text-start">
+							<input type="button" id="btnCambiarPrecio" onclick="" value="Cambiar" class="btn btn-info">
+						</div>-->
+					</div>
+					<div class="row justify-content-center" style="margin: 5px;">
+						<div class="col-12 text-center">
+							<div class="btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group">
+								<input type="radio" class="btn-check" name="options-outlined" id="btnEntrada" autocomplete="off" checked>
+								<label class="btn btn-outline-warning" for="btnEntrada">Entrada</label>
+								
+								<input type="radio" class="btn-check" name="options-outlined" id="btnSegundo" autocomplete="off">
+								<label class="btn btn-outline-warning" for="btnSegundo">Segundo</label>
+								
+								<input type="radio" class="btn-check" name="options-outlined" id="btnExtra" autocomplete="off">
+								<label class="btn btn-outline-warning" for="btnExtra">Extra</label>
+	
+								<input type="radio" class="btn-check" name="options-outlined" id="btnBebida" autocomplete="off">
+								<label class="btn btn-outline-warning" for="btnBebida">Bebidas</label>
+							</div>
+							
+						</div>
+					</div>
+					<div class="row justify-content-center" style="padding: 5px;">
+						<div class="col-12 col-sm-2 text-center">
+							<label for="inputNombreProducto" class="form-label">Nombre Producto</label>
+						</div>
+						<div class="col-9 col-sm-4 text-center">
+							<input type="text" id="inputNombreProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+						</div>
+						<div class="col-12 col-sm-2 text-center">
+							<label for="inputPrecioProducto" class="form-label">Precio Producto</label>
+						</div>
+						<div class="col-4 col-sm-3 col-lg-3 text-center">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">S/.</span>
+								</div>
+								<input type="text" id="inputPrecioProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+							</div>
+							
+						</div>
+					</div>
+					<div class="row justify-content-center" style="padding: 5px;">
+						<div class="col-12 text-center">
+							<input type="button" id="btnAgregarProducto" onclick="" value="Agregar" class="btn btn-success">
+							<input type="button" id="btnLimpiar" onclick="" value="Limpiar" class="btn btn-success">
+						</div>
+					</div>
+					<div class="row justify-content-center" style="padding: 5px;">
+						<div class="col-4 text-center">
+							<input type="button" id="btnDownload" onclick="print();" value="Download" class="btn btn-primary">
+						</div>
+						<div class="col-4 text-center">
+							<input type="button" id="btnLimpiar" onclick="limpiarCanvas();" value="Limpiar" class="btn btn-primary">
+						</div>
+						<div class="col-4 text-center">
+							<input type="button" id="btnDibujar" onclick="draw();" value="Dibujar" class="btn btn-primary">
+						</div>
+					</div>
+				</div>
+				
 			</div>
-			<div class="col-4">
-				<input type="button" id="btnLimpiar" onclick="limpiarCanvas();" value="Limpiar" class="btn btn-primary">
-			</div>
-			<div class="col-4">
-				<input type="button" id="btnDibujar" onclick="draw();" value="Dibujar" class="btn btn-primary">
+			<div class="col-12 col-lg-5" style="padding: 10px;">
+				<div class="container ">
+					<div class="row ">
+						<div class="col-7 text-end">
+							<h2>
+								MENU
+							</h2>
+						</div>
+						<div class="col-5 text-end">
+							<h2>
+								s/.7.50
+							</h2>
+						</div>
+						
+					</div>
+					<div class="row justify-content-center">
+						<hr class="col-9"style="margin-bottom: 5px;">
+						<hr class="col-7">
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-12">
+							<label for="selectEntrada" style="font-weight: bold;" class="form-label">Entrada</label>
+							<ul class="list-group" id="selectEntrada" >
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Vacio...
+								</li>
+							</ul>	
+						</div>
+						<div class="col-12">
+							<label for="selectSegundo" style="font-weight: bold;" class="form-label">Segundo</label>
+							<ul class="list-group" id="selectSegundo" >
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Vacio...
+								</li>
+							</ul>	
+						</div>
+						<div class="col-12">
+							<label for="selectExtra" style="font-weight: bold;" class="form-label">Extra</label>
+							<ul class="list-group" id="selectExtra" >
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Vacio...
+								</li>
+							</ul>	
+						</div>
+						<div class="col-12">
+							<label for="selectBebida" style="font-weight: bold;" class="form-label">Bebida</label>
+							<ul class="list-group" id="selectBebida" >
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									Vacio...
+								</li>
+							</ul>	
+						</div>
+						<div class="col-12 text-center" >
+							<label for="btnGroupOpciones"  style="margin-top: 5px;margin-bottom: 0px;" class="form-label">Opciones</label>
+						</div>
+						<div class="col-12 text-center">
+							
+							<div id="btnGroupOpciones" class="btn-group btn-group-lg" role="group" aria-label="Basic mixed styles example">
+								<button type="button" class="btn btn-success">
+									<i class="bi bi-pencil-fill"></i>
+								</button>
+								<button type="button" class="btn btn-danger">
+									<i class="bi bi-trash-fill"></i>
+								</button>
+								<button type="button" class="btn btn-info">
+									<i class="bi bi-caret-up-fill"></i>
+								</button>
+								<button type="button" class="btn btn-primary">
+									<i class="bi bi-caret-down-fill"></i>
+								</button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
 			</div>
 		</div>
+		
+		<div class="row justify-content-center" style="padding: 5px;">
+			<div class="col-12 text-center">
+				<div class="contenedor">
+					<canvas class="lienzo" id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
+				</div>
+				
+			</div>
+		</div>
+		
 	</div>
 	<script src="imagenFondo.js"></script>
 	<script type="text/javascript">
+		var precioMenu = 8.98;
+		var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
+		var arraySegundos = [['Prueba1',7],['Prueba2',8]];
+		var arrayExtras = [['Prueba1',7.5],['Lomo Saltado',88.99],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
+		var arrayBebidas = [['Prueba1',7],['Prueba2',88.54]];
+		//selects de la carta
+		var selectEntradas = document.getElementById('selectEntrada');
+		var selectSegundos = document.getElementById('selectSegundo');
+		var selectExtras = document.getElementById('selectExtra');
+		var selectBebidas = document.getElementById('selectBebida');
+
+		//construyendo item menu
+		/*
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				A list item
+			</li>
+		*/
+		const itemMenu = document.createElement('li');
+		itemMenu.className = 'list-group-item d-flex justify-content-between align-items-center';
+		//construyendo item menu con precio
+		/*
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				A list item
+				<span class="badge bg-primary rounded-pill">14</span>
+			</li>
+		*/
+		const itemMenuConPrecio = document.createElement('li');
+		itemMenuConPrecio.className = 'list-group-item d-flex justify-content-between align-items-center';
+		const spanPrecio = document.createElement('span');
+		spanPrecio.className = 'badge bg-primary rounded-pill';
+
+		function limpiarSeccionMenu(limpio){
+			var menu = itemMenu.cloneNode(true);
+			menu.innerText= 'Vacio...';
+			selectEntradas.innerHTML = '';
+			selectSegundos.innerHTML = '';
+			selectExtras.innerHTML = '';
+			selectBebidas.innerHTML = '';
+			if(!limpio){
+				selectEntradas.appendChild(menu.cloneNode(true));
+				selectSegundos.appendChild(menu.cloneNode(true));
+				selectExtras.appendChild(menu.cloneNode(true));
+				selectBebidas.appendChild(menu.cloneNode(true));
+			}
+		}
+
+		function escribirMenuHtml(){
+			limpiarSeccionMenu(false)
+			for(var i = 0; i < arrayEntradas.length; i++){
+				var item = itemMenu.cloneNode(true);
+				item.innerText = arrayEntradas[i];
+				selectEntradas.appendChild(item);
+			}
+			for(var i = 0; i < arraySegundos.length; i++){
+				var item = itemMenu.cloneNode(true);
+				item.innerText = arraySegundos[i][0];
+				selectSegundos.appendChild(item);
+			}
+			for(var i = 0; i < arrayExtras.length; i++){
+				var item = itemMenuConPrecio.cloneNode(true);
+				item.innerText = arrayExtras[i][0];
+				var spanItem = spanPrecio.cloneNode(true);
+				spanItem.innerText = arrayExtras[i][1];
+				item.appendChild(spanItem);
+				selectExtras.appendChild(item);
+			}
+			for(var i = 0; i < arrayBebidas.length; i++){
+				var item = itemMenuConPrecio.cloneNode(true);
+				item.innerText = arrayBebidas[i][0];
+				var spanItem = spanPrecio.cloneNode(true);
+				spanItem.innerText = arrayBebidas[i][1];
+				item.appendChild(spanItem);
+				selectBebidas.appendChild(item);
+			}
+		}
+
 		function limpiarCanvas() {
 			var canvasCarta = document.getElementById("canvasCarta");
 			const ctx = canvasCarta.getContext('2d');
@@ -45,10 +323,7 @@
 			pdf.addImage(imgData, 'JPEG', 0, 0);
 			pdf.save("download.pdf");
 		}
-		var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
-		var arraySegundos = [['Prueba1',7],['Prueba2',8]];
-		var arrayExtras = [['Prueba1',7],['Lomo Saltado',8],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
-		var arrayBebidas = [['Prueba1',7],['Prueba2',8]];
+		
 		function draw(){
 			var BerlinSansFBDemiBold = new FontFace('BerlinSansFBDemiBold', 'url(fonts/BerlinSansFBDemiBold.ttf)');
 			BerlinSansFBDemiBold.load().then(function(font){
@@ -60,9 +335,24 @@
 					const ctx = canvasCarta.getContext('2d');
 
 					ctx.drawImage(imagenFondo, -160, -100,1430,900);//530,50,200,200
-
+					//imprimiendo precio del menu
+					ctx.fillStyle = "black";
+					ctx.font = "bold 20px Arial";
+					ctx.fillText("s/.", 245, 190);
+					ctx.font = "bold 40px Arial";
+					var unidadPrecio = Math.floor(precioMenu);
+					var decimaPrecio = ((precioMenu - Math.floor(precioMenu)) * 100).toFixed(0);
+					var espacioDecimal = 265;
+					ctx.fillText(unidadPrecio+".", espacioDecimal, 190);//250,190
+					ctx.font = "bold 20px Arial";
+					espacioDecimal += 35;
+					if(decimaPrecio == 0){
+						decimaPrecio = "00";
+					}
+					ctx.fillText(decimaPrecio, espacioDecimal, 175);
+					
 					//escribiendo seccion de la carta entrada
-					ctx.font = '800 30px BerlinSansFBDemiBold';
+					ctx.font = '800 30px arial';
 					ctx.fillStyle = 'black';
 					ctx.fillText('ENTRADAS', 110, 270);//270,350
 					//dibujando linea de separacion de seccion de la carta entrada
@@ -75,7 +365,7 @@
 					ctx.lineTo(295, 278);
 					ctx.strokeStyle = '#000000';
 					ctx.stroke();
-
+					//escribiendo seccion de la carta entrada
 					for(var i = 0; i < arrayEntradas.length; i++){
 						ctx.font = 'bold 20px arial';
 						ctx.fillStyle = 'black';
@@ -100,6 +390,7 @@
 					ctx.strokeStyle = 'black';
 					ctx.stroke();
 					alturaText += 35;//25
+					//escribiendo seccion de la carta segundo
 					for(var i = 0; i < arraySegundos.length; i++){
 						ctx.font = 'bold 20px arial';
 						ctx.fillStyle = 'black';
@@ -120,16 +411,17 @@
 					ctx.lineTo(640, 308);
 					ctx.strokeStyle = 'black';
 					ctx.stroke();
+					//escribiendo elementos de la carta extras
 					for(var i = 0; i < arrayExtras.length; i++){
 						//dibujar elipse para el precio de los extras
 						ctx.beginPath();
-						ctx.ellipse(702, 333 + (i * 30), 23, 13, 0, 0, 2 * Math.PI);
+						ctx.ellipse(702, 333 + (i * 30), 28, 13, 0, 0, 2 * Math.PI);
 						ctx.fillStyle = '#C1D92E';
 						ctx.fill();
 						ctx.strokeStyle = 'green';
 						ctx.stroke();
-						//escribiendo precio
-						ctx.font = 'normal bold 20px arial';
+						//escribiendo nombre de los extras
+						ctx.font = 'bold 20px arial';
 						ctx.fillStyle = 'black';
 						ctx.fillText(arrayExtras[i][0], 400,340+ (i * 30));
 						
@@ -138,9 +430,34 @@
 						for(var j = 0; j < (25 - tamañoExtra); j++){
 							guiones += '. ';
 						}
-						ctx.fillText(guiones + ' S/.' + arrayExtras[i][1], 400+(tamañoExtra * 11),340+ (i * 30));
+						//arrayExtras[i][1]
+						// obtenieno unidad y decima del precio
+						var unidadExtra = Math.floor(arrayExtras[i][1]);
+						//var decimaExtra = Math.floor((arrayExtras[i][1] - unidadExtra) * 100);
+						var decimaExtra = ((arrayExtras[i][1] - Math.floor(arrayExtras[i][1])) * 100).toFixed(0);
+						//imprimiendo puntos
+						ctx.fillText(guiones, 400+(tamañoExtra * 11),340+ (i * 30));
+						//imprimiendo tipo moneda
+						ctx.font = 'bold 10px arial';
+						ctx.fillText("S/.", 678,340+ (i * 30));
+						//imprimiendo precio unidad
+						ctx.font = 'bold 20px arial';
+						ctx.fillText(unidadExtra + ".", 690,340+ (i * 30));
+						ctx.font = 'bold 10px arial';
+						//validando decima en 0
+						if (decimaExtra == 0){
+							decimaExtra = "00";
+						}
+						//validando tamaño de la unidad
+						if(unidadExtra.toString().length == 1){
+							//imprimiendo precio decimal
+							ctx.fillText(decimaExtra, 706,332+ (i * 30));//706
+						}
+						else{
+							//imprimiendo precio decimal
+							ctx.fillText(decimaExtra, 714,332+ (i * 30));
+						}
 						
-
 					}
 					//escribiendo seccion de la carta bebidas
 					ctx.font = '800 30px BerlinSansFBDemiBold';
@@ -156,10 +473,11 @@
 					ctx.lineTo(1025, 58);
 					ctx.strokeStyle = 'black';
 					ctx.stroke();
+					//escribiendo elementos de la carta bebidas
 					for(var i = 0; i < arrayBebidas.length; i++){
 						//dibujar elipse para el precio de las bebidas
 						ctx.beginPath();
-						ctx.ellipse(1082, 83 + (i * 30), 23, 13, 0, 0, 2 * Math.PI);
+						ctx.ellipse(1082, 83 + (i * 30), 28, 13, 0, 0, 2 * Math.PI);
 						ctx.fillStyle = '#C1D92E';
 						ctx.fill();
 						ctx.strokeStyle = 'green';
@@ -172,7 +490,32 @@
 						for(var j = 0; j < (25 - tamañoBebida); j++){
 							guiones += '. ';
 						}
-						ctx.fillText(guiones + ' S/.' + arrayBebidas[i][1], 780+(tamañoBebida * 11),90+ (i * 30));
+						//obtenieno unidad y decima del precio
+						var unidadBebida = Math.floor(arrayBebidas[i][1]);
+						//var decimaBebida = Math.floor((arrayBebidas[i][1] - unidadBebida) * 100);
+						var decimaBebida = ((arrayBebidas[i][1] - Math.floor(arrayBebidas[i][1])) * 100).toFixed(0);
+						//imprimiendo puntos
+						ctx.fillText(guiones, 780+(tamañoBebida * 11),90+ (i * 30));
+						//imprimiendo tipo moneda
+						ctx.font = 'bold 10px arial';
+						ctx.fillText("S/.", 1058,90+ (i * 30));
+						//imprimiendo precio unidad
+						ctx.font = 'bold 20px arial';
+						ctx.fillText(unidadBebida + ".", 1070,90+ (i * 30));
+						ctx.font = 'bold 10px arial';
+						//validando decima en 0
+						if (decimaBebida == 0){
+							decimaBebida = "00";
+						}
+						//validando tamaño de la unidad
+						if(unidadBebida.toString().length == 1){
+							//imprimiendo precio decimal
+							ctx.fillText(decimaBebida, 1086,82+ (i * 30));//1086
+						}
+						else{
+							//imprimiendo precio decimal
+							ctx.fillText(decimaBebida, 1094,82+ (i * 30));
+						}
 					}
 					
 				} else {
@@ -183,8 +526,8 @@
 			
 
 		}
-		window.onload = draw();
-		
+		//window.onload = draw();
+		window.addEventListener('load', draw);
 		
 				
 	</script>

@@ -1,4 +1,13 @@
 @font-face {
-    font-family: perro;
+    font-family: "prueba";
     src: url(fonts/Best_Valentina_TTF.ttf); /* Eliminate other formats*/
+}
+.contenedor{
+    overflow: scroll;
+    box-sizing:border-box;
+    width:100%;
+    padding:10px;
+}
+.lienzo{ 
+    border:1px solid #d9d9d9;  
 }

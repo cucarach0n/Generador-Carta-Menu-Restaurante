@@ -215,10 +215,13 @@
 				
 				var alturaText = 0;
 				const ctx = canvasCarta.getContext('2d');
+				//escribiendo precio del menu
+				
 				//cargando imagen del chef
 				imagenChef.onload = () => {
 					ctx.drawImage(imagenChef, 300, 50,200,200);//530,50,200,200
 				}
+				
 				//escribiendo el titulo del restaurante
 				ctx.font = 'italic 3em "Fira Sans", serif';
 				ctx.strokeStyle = "yellow"; 
