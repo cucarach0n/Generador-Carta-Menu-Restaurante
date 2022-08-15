@@ -5,7 +5,7 @@ var tipoProducto = 1;
 //precio del menu
 var precioMenu = 7.5;
 // arreglos de productos
-var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
+var arrayEntradas = ['Prueba','Prueba2','Prueba3','Prueba4','Prueba5'];
 var arraySegundos = [['Prueba1',7],['Prueba2',8]];
 var arrayExtras = [['Prueba1',7.5],['Lomo Saltado',88.99],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
 var arrayBebidas = [['Prueba1',7],['Prueba2',88.54]];
@@ -402,6 +402,202 @@ function eliminarProducto(){
         draw();
         escribirMenuHtml();
         limpiarCancelarProducto(true);
+    }
+}
+function subirPosicionProducto(){
+    if(productoSeleccionado.length > 0){
+        switch(productoSeleccionado[0]){
+            case 1:
+                if(productoSeleccionado[3] > 0){
+                    var arrayExtrasTemp = [];
+                    for(var i = 0; i < arrayEntradas.length; i++){
+                        if(i == productoSeleccionado[3] - 1){
+                            arrayExtrasTemp.push(productoSeleccionado[1]);
+                        }
+                        else if(i == productoSeleccionado[3]){
+                            arrayExtrasTemp.push(arrayEntradas[i - 1] );
+                        }
+                        else{
+                            arrayExtrasTemp.push(arrayEntradas[i]);
+                        }
+                    }
+                    arrayEntradas = arrayExtrasTemp;
+                    console.log(arrayEntradas);
+                    productoSeleccionado[3]--;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 2:
+                if(productoSeleccionado[3] > 0){
+                    var arraySegundosTemp = [];
+                    for(var i = 0; i < arraySegundos.length; i++){
+                        if(i == productoSeleccionado[3] - 1){
+                            arraySegundosTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else if(i == productoSeleccionado[3]){
+                            arraySegundosTemp.push(arraySegundos[i - 1] );
+                        }
+                        else{
+                            arraySegundosTemp.push(arraySegundos[i]);
+                        }
+                    }
+                    arraySegundos = arraySegundosTemp;
+                    console.log(arraySegundos);
+                    productoSeleccionado[3]--;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 3:
+                if(productoSeleccionado[3] > 0){
+                    var arrayExtrasTemp = [];
+                    for(var i = 0; i < arrayExtras.length; i++){
+                        if(i == productoSeleccionado[3] - 1){
+                            arrayExtrasTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else if(i == productoSeleccionado[3]){
+                            arrayExtrasTemp.push(arrayExtras[i - 1] );
+                        }
+                        else{
+                            arrayExtrasTemp.push(arrayExtras[i]);
+                        }
+                    }
+                    arrayExtras = arrayExtrasTemp;
+                    console.log(arrayExtras);
+                    productoSeleccionado[3]--;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 4:
+                if(productoSeleccionado[3] > 0){
+                    var arrayBebidasTemp = [];
+                    for(var i = 0; i < arrayBebidas.length; i++){
+                        if(i == productoSeleccionado[3] - 1){
+                            arrayBebidasTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else if(i == productoSeleccionado[3]){
+                            arrayBebidasTemp.push(arrayBebidas[i - 1] );
+                        }
+                        else{
+                            arrayBebidasTemp.push(arrayBebidas[i]);
+                        }
+                    }
+                    arrayBebidas = arrayBebidasTemp;
+                    console.log(arrayBebidas);
+                    productoSeleccionado[3]--;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+        }
+    }
+}
+function bajarPosicionProducto(){
+    if(productoSeleccionado.length > 0){
+        switch(productoSeleccionado[0]){
+            case 1:
+                if(productoSeleccionado[3] < arrayEntradas.length - 1){
+                    var arrayExtrasTemp = [];
+                    for(var i = 0; i < arrayEntradas.length; i++){
+                        if(i == productoSeleccionado[3]){
+                            arrayExtrasTemp.push(arrayEntradas[i + 1] );
+                        }
+                        else if(i == productoSeleccionado[3] + 1){
+                            arrayExtrasTemp.push(productoSeleccionado[1]);
+                        }
+                        else{
+                            arrayExtrasTemp.push(arrayEntradas[i]);
+                        }
+                    }
+                    arrayEntradas = arrayExtrasTemp;
+                    console.log(arrayEntradas);
+                    productoSeleccionado[3]++;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 2:
+                if(productoSeleccionado[3] < arraySegundos.length - 1){
+                    var arraySegundosTemp = [];
+                    for(var i = 0; i < arraySegundos.length; i++){
+                        if(i == productoSeleccionado[3]){
+                            arraySegundosTemp.push(arraySegundos[i + 1] );
+                        }
+                        else if(i == productoSeleccionado[3] + 1){
+                            arraySegundosTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else{
+                            arraySegundosTemp.push(arraySegundos[i]);
+                        }
+                    }
+                    arraySegundos = arraySegundosTemp;
+                    console.log(arraySegundos);
+                    productoSeleccionado[3]++;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 3:
+                if(productoSeleccionado[3] < arrayExtras.length - 1){
+                    var arrayExtrasTemp = [];
+                    for(var i = 0; i < arrayExtras.length; i++){
+                        if(i == productoSeleccionado[3]){
+                            arrayExtrasTemp.push(arrayExtras[i + 1] );
+                        }
+                        else if(i == productoSeleccionado[3] + 1){
+                            arrayExtrasTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else{
+                            arrayExtrasTemp.push(arrayExtras[i]);
+                        }
+                    }
+                    arrayExtras = arrayExtrasTemp;
+                    console.log(arrayExtras);
+                    productoSeleccionado[3]++;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+            case 4:
+                if(productoSeleccionado[3] < arrayBebidas.length - 1){
+                    var arrayBebidasTemp = [];
+                    for(var i = 0; i < arrayBebidas.length; i++){
+                        if(i == productoSeleccionado[3]){
+                            arrayBebidasTemp.push(arrayBebidas[i + 1] );
+                        }
+                        else if(i == productoSeleccionado[3] + 1){
+                            arrayBebidasTemp.push([productoSeleccionado[1], productoSeleccionado[2]]);
+                        }
+                        else{
+                            arrayBebidasTemp.push(arrayBebidas[i]);
+                        }
+                    }
+                    arrayBebidas = arrayBebidasTemp;
+                    console.log(arrayBebidas);
+                    productoSeleccionado[3]++;
+                    limpiarCanvas();
+                    draw();
+                    escribirMenuHtml();
+                    limpiarCancelarProducto(true);
+                }
+                break;
+        }
     }
 }
 function draw(){

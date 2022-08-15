@@ -3,7 +3,6 @@
     src: url(fonts/Best_Valentina_TTF.ttf); /* Eliminate other formats*/
 }
 .contenedor{
-    overflow: scroll;
     box-sizing:border-box;
     width:100%;
     padding:10px;

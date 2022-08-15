@@ -33,8 +33,8 @@
     ============================ -->
 	<div class="container ">
 		<div class="row justify-content-center border border-success rounded border-2" >
-			<div id="generador" class="col-12 col-lg-7 " style="padding: 10px;">
-				<div class="container ">
+			<div id="generador" class="col-12 col-lg-7 align-items-center" style="padding: 10px;display: flex;">
+				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-12 text-center">
 							<h1 class="display-3">EL MIXTO</h1>
@@ -199,10 +199,10 @@
 								<button onclick="eliminarProducto();" type="button" class="btn btn-danger">
 									<i class="bi bi-trash-fill"></i>
 								</button>
-								<button type="button" class="btn btn-info">
+								<button onclick="subirPosicionProducto();" type="button" class="btn btn-info">
 									<i class="bi bi-caret-up-fill"></i>
 								</button>
-								<button type="button" class="btn btn-primary">
+								<button onclick="bajarPosicionProducto();" type="button" class="btn btn-primary">
 									<i class="bi bi-caret-down-fill"></i>
 								</button>
 							</div>
@@ -219,20 +219,44 @@
 						<div class="col-4 text-center">
 							<input type="button" id="btnDibujar" onclick="draw();" value="Dibujar" class="btn btn-primary">
 						</div>
+						<div class="col-6 text-center" style="padding: 5px;">
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								Vista Preliminar
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row justify-content-center" style="padding: 5px;">
+		<!--<div class="row justify-content-center" style="padding: 5px;">
 			<div class="col-12 text-center">
 				<div class="contenedor">
-					<canvas class="lienzo" id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
+					
 				</div>
 				
 			</div>
-		</div>
+		</div>-->
 		
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Vista preliminar de la carta</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<canvas class="lienzo img-fluid" id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Descargar PDF</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="imagenFondo.js"></script>
 	<script src="source.js"></script>
