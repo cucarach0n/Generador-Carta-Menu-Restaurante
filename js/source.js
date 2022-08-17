@@ -606,7 +606,8 @@ function draw(){
         document.fonts.add(font);
         var canvasCarta = document.getElementById("canvasCarta");
         if (canvasCarta.getContext) {
-        
+            const imagenCarta = new Image();
+			imagenCarta.src = "imagenes/imagenCarta.jpg";
             var alturaText = 0;
             const ctx = canvasCarta.getContext('2d');
 
