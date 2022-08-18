@@ -30,6 +30,26 @@
     animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
   }
+
+  .gradient-border2 {
+    --borderWidth: 3px;
+    background: white;
+    position: relative;
+    border-radius: var(--borderWidth);
+  }
+  .gradient-border2:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #b9e326, #9add31, #80c32a, #69a121, #5e8c0d, #0d8c2b, #07b39b, #6fba82);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+  }
   
   
   @keyframes animatedgradient {

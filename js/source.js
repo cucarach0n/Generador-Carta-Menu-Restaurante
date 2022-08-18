@@ -5,10 +5,10 @@ var tipoProducto = 1;
 //precio del menu
 var precioMenu = 7.5;
 // arreglos de productos
-var arrayEntradas = ['Prueba','Prueba2','Prueba3','Prueba4','Prueba5'];
-var arraySegundos = [['Prueba1',7],['Prueba2',8]];
-var arrayExtras = [['Prueba1',7.5],['Lomo Saltado',88.99],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
-var arrayBebidas = [['Prueba1',7],['Prueba2',88.54]];
+var arrayEntradas = ['Ensalada de Palta','Sopa de casa','Huancaina'];
+var arraySegundos = [['Arroz con pollo + crema',7],['Seco de carne con frejol',8]];
+var arrayExtras = [['Arroz chaufa',7.5],['Lomo Saltado',8.50],['Aeropuerto',8]];//max 24 caracteres
+var arrayBebidas = [['Inka kola persona',2],['Coca cola personal',2]];
 //selects de la carta
 const selectEntradas = document.getElementById('selectEntrada');
 const selectSegundos = document.getElementById('selectSegundo');
@@ -284,9 +284,7 @@ function escribirMenuHtml(){
         item.setAttribute('data-tipoProducto',1);
         if(productoSeleccionado.length > 0){
             if(productoSeleccionado[0] == 1 && productoSeleccionado[3] == i){
-                console.log('entrada');
-                //item.style.boxShadow = '0px 0px 15px green inset';
-                item.setAttribute('style','box-shadow: 0px 0px 15px green inset;');
+                item.style.boxShadow = '0px 0px 15px #bded12 inset';
             }
         }
         selectEntradas.appendChild(item);
@@ -300,7 +298,7 @@ function escribirMenuHtml(){
         item.setAttribute('data-tipoProducto',2);
         if(productoSeleccionado.length > 0){
             if(productoSeleccionado[0] == 2 && productoSeleccionado[3] == i){
-                item.style.boxShadow = '0px 0px 15px green inset';
+                item.style.boxShadow = '0px 0px 15px #bded12 inset';
             }
         }
         selectSegundos.appendChild(item);
@@ -314,7 +312,7 @@ function escribirMenuHtml(){
         item.setAttribute('data-tipoProducto',3);
         if(productoSeleccionado.length > 0){
             if(productoSeleccionado[0] == 3 && productoSeleccionado[3] == i){
-                item.style.boxShadow = '0px 0px 15px green inset';
+                item.style.boxShadow = '0px 0px 15px #bded12 inset';
             }
         }
         var spanItem = spanPrecio.cloneNode(true);
@@ -331,7 +329,7 @@ function escribirMenuHtml(){
         item.setAttribute('data-tipoProducto',4);
         if(productoSeleccionado.length > 0){
             if(productoSeleccionado[0] == 4 && productoSeleccionado[3] == i){
-                item.style.boxShadow = '0px 0px 15px green inset';
+                item.style.boxShadow = '0px 0px 15px #bded12 inset';
             }
         }
         var spanItem = spanPrecio.cloneNode(true);
@@ -370,7 +368,7 @@ function seleccionarProducto(element){
         for(var i = 0; i < productos.length; i++){
             productos[i].style.boxShadow = '';
         }
-        element.style.boxShadow = '0px 0px 15px green inset';
+        element.style.boxShadow = '0px 0px 15px #bded12 inset';
         productoSeleccionado = [parseInt(element.getAttribute('data-tipoProducto')),
                                 element.getAttribute('data-nombreProducto'),
                                 parseFloat(element.getAttribute('data-precioProducto')),
