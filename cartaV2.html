@@ -47,7 +47,7 @@
 					</div>
 					<div class="row justify-content-center">
 						<div class="col-12 text-center">
-							<h1 class="display-6" style="margin-bottom: 0px;">Generador de Carta de Menu</h1>
+							<h1 class="display-6" style="margin-bottom: 0px;">Generador de Carta</h1>
 						</div>
 						<hr class="col-9"style="margin-bottom: 5px;">
 						<hr class="col-7">
@@ -64,7 +64,7 @@
 								
 								<input class="form-control" list="datalistPrecio" id="inputPrecio" value="7.50" placeholder="Precio...">
 								<div class="input-group-append">
-									<input type="button" id="btnCambiarPrecio" onclick="" value="Cambiar" class="btn btn-info">
+									<input type="button" id="btnCambiarPrecio" onclick="cambiarPrecio();" value="Actualizar" class="btn btn-info">
 								</div>
 								<datalist id="datalistPrecio">
 									<option value="6">
@@ -88,47 +88,49 @@
 					<div class="row justify-content-center" style="margin: 5px;">
 						<div class="col-12 text-center">
 							<div class="btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group">
-								<input type="radio" class="btn-check" name="options-outlined" id="btnEntrada" autocomplete="off" checked>
-								<label class="btn btn-outline-warning" for="btnEntrada">Entrada</label>
+								<input type="radio" onclick="cambiarTipoProducto(1);" class="btn-check" name="options-outlined" id="btnEntrada" autocomplete="off" checked>
+								<label class="btn btn-outline-danger" for="btnEntrada">Entrada</label>
 								
-								<input type="radio" class="btn-check" name="options-outlined" id="btnSegundo" autocomplete="off">
-								<label class="btn btn-outline-warning" for="btnSegundo">Segundo</label>
+								<input type="radio" onclick="cambiarTipoProducto(2);" class="btn-check" name="options-outlined" id="btnSegundo" autocomplete="off">
+								<label class="btn btn-outline-danger" for="btnSegundo">Segundo</label>
 								
-								<input type="radio" class="btn-check" name="options-outlined" id="btnExtra" autocomplete="off">
-								<label class="btn btn-outline-warning" for="btnExtra">Extra</label>
+								<input type="radio" onclick="cambiarTipoProducto(3);" class="btn-check" name="options-outlined" id="btnExtra" autocomplete="off">
+								<label class="btn btn-outline-danger" for="btnExtra">Extra</label>
 	
-								<input type="radio" class="btn-check" name="options-outlined" id="btnBebida" autocomplete="off">
-								<label class="btn btn-outline-warning" for="btnBebida">Bebidas</label>
+								<input type="radio" onclick="cambiarTipoProducto(4);" class="btn-check" name="options-outlined" id="btnBebida" autocomplete="off">
+								<label class="btn btn-outline-danger" for="btnBebida">Bebidas</label>
 							</div>
 							
 						</div>
 					</div>
-					<div class="row justify-content-center" style="padding: 5px;">
-						<div class="col-12 col-sm-2 text-center">
-							<label for="inputNombreProducto" class="form-label">Nombre Producto</label>
-						</div>
-						<div class="col-9 col-sm-4 text-center">
-							<input type="text" id="inputNombreProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-						</div>
-						<div class="col-12 col-sm-2 text-center">
-							<label for="inputPrecioProducto" class="form-label">Precio Producto</label>
-						</div>
-						<div class="col-4 col-sm-3 col-lg-3 text-center">
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text">S/.</span>
+					<form id="frmMenu">
+						<div class="row justify-content-center" style="padding: 5px;">
+							<div class="col-12 col-sm-2 text-center">
+								<label for="txtNombreProducto" class="form-label">Nombre Producto</label>
+							</div>
+							<div class="col-9 col-sm-4 text-center">
+								<input type="text" id="txtNombreProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+							</div>
+							<div class="col-12 col-sm-2 text-center" id="lblPrecioProducto" style="display: none;">
+								<label for="txtPrecioProducto" class="form-label">Precio Producto</label>
+							</div>
+							<div class="col-4 col-sm-3 col-lg-3 text-center" id="lblTextPrecioProducto" style="display: none;">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">S/.</span>
+									</div>
+									<input type="text" id="txtPrecioProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 								</div>
-								<input type="text" id="inputPrecioProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+								
 							</div>
-							
 						</div>
-					</div>
-					<div class="row justify-content-center" style="padding: 5px;">
-						<div class="col-12 text-center">
-							<input type="button" id="btnAgregarProducto" onclick="" value="Agregar" class="btn btn-success">
-							<input type="button" id="btnLimpiar" onclick="" value="Limpiar" class="btn btn-success">
+						<div class="row justify-content-center" style="padding: 5px;">
+							<div class="col-12 text-center">
+								<input type="submit" id="btnAgregarProducto" onclick="agregarProducto(event);" value="Agregar" class="btn btn-success">
+								<input type="button" id="btnLimpiar" onclick="" value="Limpiar" class="btn btn-success">
+							</div>
 						</div>
-					</div>
+					</form>
 					<div class="row justify-content-center" style="padding: 5px;">
 						<div class="col-4 text-center">
 							<input type="button" id="btnDownload" onclick="print();" value="Download" class="btn btn-primary">
@@ -148,11 +150,11 @@
 					<div class="row ">
 						<div class="col-7 text-end">
 							<h2>
-								MENU
+								MENÚ
 							</h2>
 						</div>
 						<div class="col-5 text-end">
-							<h2>
+							<h2 id="lblPrecio">
 								s/.7.50
 							</h2>
 						</div>
@@ -233,17 +235,22 @@
 	</div>
 	<script src="imagenFondo.js"></script>
 	<script type="text/javascript">
-		var precioMenu = 8.98;
+		//tipo producto
+		var tipoProducto = 1;
+		//precio del menu
+		var precioMenu = 7.5;
+		// arreglos de productos
 		var arrayEntradas = ['Prueba','Prueba2','Prueba3'];
 		var arraySegundos = [['Prueba1',7],['Prueba2',8]];
 		var arrayExtras = [['Prueba1',7.5],['Lomo Saltado',88.99],['aaaaaaaaaaaaaaa',8]];//max 24 caracteres
 		var arrayBebidas = [['Prueba1',7],['Prueba2',88.54]];
 		//selects de la carta
-		var selectEntradas = document.getElementById('selectEntrada');
-		var selectSegundos = document.getElementById('selectSegundo');
-		var selectExtras = document.getElementById('selectExtra');
-		var selectBebidas = document.getElementById('selectBebida');
-
+		const selectEntradas = document.getElementById('selectEntrada');
+		const selectSegundos = document.getElementById('selectSegundo');
+		const selectExtras = document.getElementById('selectExtra');
+		const selectBebidas = document.getElementById('selectBebida');
+		//label precio
+		const labelPrecio = document.getElementById('lblPrecio');
 		//construyendo item menu
 		/*
 			<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -263,7 +270,92 @@
 		itemMenuConPrecio.className = 'list-group-item d-flex justify-content-between align-items-center';
 		const spanPrecio = document.createElement('span');
 		spanPrecio.className = 'badge bg-primary rounded-pill';
+		
+		//funcion para agregar producto al menu
+		function agregarProducto(evt){
+			
+			//llamando required del input nombreProducto
+			
+			if(document.getElementById('txtNombreProducto').checkValidity()){
+				evt.preventDefault();
+				//validando tipo producto a agregar
+				var nombreProducto = document.getElementById('txtNombreProducto').value;
+				switch(tipoProducto){
+					case 1:
+						arrayEntradas.push(nombreProducto);
+						escribirMenuHtml();
+						break;
+					case 2:
+						var precioProducto = 0;
+						arraySegundos.push([nombreProducto,precioProducto]);
+						escribirMenuHtml();
+						break;
+					case 3:
+						if(document.getElementById('txtPrecioProducto').checkValidity()){
 
+							var precioProducto = document.getElementById('txtPrecioProducto').value;
+							arrayExtras.push([nombreProducto,precioProducto]);
+							escribirMenuHtml();
+							document.getElementById('txtPrecioProducto').value = '';
+						}
+						else{
+							document.getElementById('frmMenu').reportValidity();
+						}
+						break;
+					case 4:
+						if(document.getElementById('txtPrecioProducto').checkValidity()){
+							var precioProducto = document.getElementById('txtPrecioProducto').value;
+							arrayBebidas.push([nombreProducto,precioProducto]);
+							escribirMenuHtml();
+							document.getElementById('txtPrecioProducto').value = '';
+						}
+						else{
+							document.getElementById('frmMenu').reportValidity();
+						}
+						break;
+				}
+				document.getElementById('txtNombreProducto').value = '';
+				limpiarCanvas();
+				draw();
+			}
+			else{
+				document.getElementById('frmMenu').reportValidity();
+			}
+		}
+
+		function cambiarTipoProducto(tipo){
+			tipoProducto = tipo;
+			switch (tipo) {
+				case 1:
+					document.getElementById('lblPrecioProducto').style.display = 'none';
+					document.getElementById('lblTextPrecioProducto').style.display = 'none';
+					document.getElementById('txtPrecioProducto').required = false;
+					break;
+			
+				case 2:
+					document.getElementById('lblPrecioProducto').style.display = 'none';
+					document.getElementById('lblTextPrecioProducto').style.display = 'none';
+					document.getElementById('txtPrecioProducto').required = false;
+					break;
+				case 3:
+					document.getElementById('lblPrecioProducto').style.display = '';
+					document.getElementById('lblTextPrecioProducto').style.display = '';
+					document.getElementById('txtPrecioProducto').required = true;
+					break;
+				case 4:
+					document.getElementById('lblPrecioProducto').style.display = '';
+					document.getElementById('lblTextPrecioProducto').style.display = '';
+					document.getElementById('txtPrecioProducto').required = true;
+					break;
+			}
+		}
+
+		function cambiarPrecio(){
+			precioMenu = document.getElementById('inputPrecio').value;
+			labelPrecio.innerText = '';
+			labelPrecio.innerText = "s/." + precioMenu;
+			draw();
+		}
 		function limpiarSeccionMenu(limpio){
 			var menu = itemMenu.cloneNode(true);
 			menu.innerText= 'Vacio...';
@@ -272,15 +364,23 @@
 			selectExtras.innerHTML = '';
 			selectBebidas.innerHTML = '';
 			if(!limpio){
-				selectEntradas.appendChild(menu.cloneNode(true));
-				selectSegundos.appendChild(menu.cloneNode(true));
-				selectExtras.appendChild(menu.cloneNode(true));
-				selectBebidas.appendChild(menu.cloneNode(true));
+				if(arrayEntradas.length == 0){
+					selectEntradas.appendChild(menu.cloneNode(true));
+				}
+				else if(arraySegundos.length == 0){
+					selectSegundos.appendChild(menu.cloneNode(true));
+				}
+				else if(arrayExtras.length == 0){
+					selectExtras.appendChild(menu.cloneNode(true));
+				}
+				else if(arrayBebidas.length == 0){
+					selectBebidas.appendChild(menu.cloneNode(true));
+				}
 			}
 		}
 
 		function escribirMenuHtml(){
-			limpiarSeccionMenu(false)
+			limpiarSeccionMenu(true)
 			for(var i = 0; i < arrayEntradas.length; i++){
 				var item = itemMenu.cloneNode(true);
 				item.innerText = arrayEntradas[i];
@@ -354,7 +454,7 @@
 					//escribiendo seccion de la carta entrada
 					ctx.font = '800 30px arial';
 					ctx.fillStyle = 'black';
-					ctx.fillText('ENTRADAS', 110, 270);//270,350
+					ctx.fillText('ENTRADAS', 95, 270);//270,350
 					//dibujando linea de separacion de seccion de la carta entrada
 					ctx.beginPath();
 					ctx.lineCap="round";
