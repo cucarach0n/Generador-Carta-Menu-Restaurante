@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<title>Document</title>
 	<link rel="stylesheet" href="css/style.css">
 	<style>
@@ -34,7 +34,7 @@
 	<div class="container ">
 		<div class="row justify-content-center border border-success rounded border-2" >
 			<div id="generador" class="col-12 col-lg-7 align-items-center" style="padding: 10px;display: flex;">
-				<div class="container">
+				<div class="container"  >
 					<div class="row justify-content-center">
 						<div class="col-12 text-center">
 							<h1 class="display-3">EL MIXTO</h1>
@@ -52,17 +52,18 @@
 						<hr class="col-9"style="margin-bottom: 5px;">
 						<hr class="col-7">
 					</div>
+					<form id="frmCambiarPrecio">
 					<div class="row justify-content-center">
-						<div class="col-12 col-sm-12 col-md-2  text-center">
+						<div class="col-12 col-sm-12 text-center">
 							<label for="inputPrecio" class="form-label">Precio Menu</label>
 						</div>
-						<div class="col-9 col-sm-6 col-md-5 col-lg-6 col-xl-5 text-end">
-							<div class="input-group mb-3">
+						<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 text-end">
+							<!--<div class="input-group mb-3">
 								<div class="input-group-prepend">
 								  <span class="input-group-text">S/.</span>
 								</div>
 								
-								<input type="number" class="form-control" list="datalistPrecio" id="inputPrecio" value="7.50" placeholder="Precio...">
+								<input type="number" min="1.0" max="100" step="0.5" class="form-control" list="datalistPrecio" id="inputPrecio" value="7.50" placeholder="Precio...">
 								<div class="input-group-append">
 									<input type="button" id="btnCambiarPrecio" onclick="cambiarPrecio();" value="Actualizar" class="btn btn-info">
 								</div>
@@ -77,15 +78,40 @@
 									<option value="9.5">
 									<option value="10">
 								</datalist>
-							  </div>
-
+							</div>-->
+							
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">S/.</span>
+								</div>
+								<input type="number" required min="1.0" max="100" step="0.5" class="form-control" list="datalistPrecio" id="inputPrecio" value="7.50" placeholder="Precio...">
+								<button type="button" class="input-group-text dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+								<span class="visually-hidden">Toggle Dropdown</span>
+								</button>
+								
+								<ul class="dropdown-menu dropdown-menu-end text-center" style="min-width: 3rem;">
+								<li onclick="setPrecio(this);" style="cursor: pointer;">6.00</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">6.50</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">7.00</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">7.50</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">8.00</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">8.50</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">9.00</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">9.50</li>
+								<li onclick="setPrecio(this);" style="cursor: pointer;">10.00</li>
+								</ul>
+							</div>
 							
 						</div>
+						<div class="col-12 col-sm-3 col-md-2 text-center">
+							<input type="submit" id="btnCambiarPrecio" onclick="cambiarPrecio(event);" value="Actualizar" class="btn btn-info ">
+						</div>
+						</form>
 						<!--<div class="col-6 col-sm-2 text-start">
 							<input type="button" id="btnCambiarPrecio" onclick="" value="Cambiar" class="btn btn-info">
 						</div>-->
 					</div>
-					<div class="row justify-content-center" style="margin: 5px;">
+					<div class="row justify-content-center" id="contenedorEditorCarta" style="margin: 5px;">
 						<div class="col-12 text-center">
 							<div class="btn-group flex-wrap" role="group" aria-label="Basic radio toggle button group">
 								<input type="radio" onclick="cambiarTipoProducto(1);" class="btn-check btnTipoProducto" name="options-outlined" id="btnEntrada" autocomplete="off" checked>
@@ -114,12 +140,12 @@
 							<div class="col-12 col-sm-2 text-center" id="lblPrecioProducto" style="display: none;">
 								<label for="txtPrecioProducto" class="form-label">Precio Producto</label>
 							</div>
-							<div class="col-4 col-sm-3 col-lg-3 text-center" id="lblTextPrecioProducto" style="display: none;">
+							<div class="col-5 col-sm-3 col-lg-3 text-center" id="lblTextPrecioProducto" style="display: none;">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text">S/.</span>
 									</div>
-									<input type="text" id="txtPrecioProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+									<input type="number" min="0" step="0.5" id="txtPrecioProducto" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 								</div>
 								
 							</div>
@@ -144,8 +170,8 @@
 							</h2>
 						</div>
 						<div class="col-5 text-end">
-							<h2 id="lblPrecio">
-								s/.7.50
+							<h2>
+								<span id="lblPrecio">S/. 7.50</span>
 							</h2>
 						</div>
 						
@@ -187,6 +213,11 @@
 								</li>
 							</ul>	
 						</div>
+						
+						
+					</div>
+
+					<div class="row justify-content-center" style="padding: 5px;">
 						<div class="col-12 text-center" >
 							<label for="btnGroupOpciones"  style="margin-top: 5px;margin-bottom: 0px;" class="form-label">Opciones</label>
 						</div>
@@ -207,21 +238,20 @@
 								</button>
 							</div>
 						</div>
-						
 					</div>
 					<div class="row justify-content-center" style="padding: 5px;">
-						<div class="col-4 text-center">
-							<input type="button" id="btnDownload" onclick="print();" value="Descargar PDF" class="btn btn-primary">
-						</div>
-						<div class="col-4 text-center">
+						<!--<div class="col-4 text-center">
+							<input type="button" id="btnDownload" value="Descargar PDF" class="btn btn-primary">
+						</div>-->
+						<div class="col-6 text-center">
 							<input type="button" id="btnLimpiar" onclick="limpiarCanvas();" value="Limpiar" class="btn btn-primary">
 						</div>
-						<div class="col-4 text-center">
+						<div class="col-6 text-center">
 							<input type="button" id="btnDibujar" onclick="draw();" value="Dibujar" class="btn btn-primary">
 						</div>
 						<div class="col-6 text-center" style="padding: 5px;">
 							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPreview">
 								Vista Preliminar
 							</button>
 						</div>
@@ -241,7 +271,7 @@
 		
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -252,8 +282,25 @@
 					<canvas class="lienzo img-fluid" id="canvasCarta" width="1123" height="794" style="border: red 5px dotted;"></canvas>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn btn-primary">Descargar PDF</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+					<button onclick="print();" type="button" class="btn btn-primary">Descargar PDF</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel2">Alerta</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="modalAlertaError">
+					<p>Deves seleccionar un elemento de la carta para editarlo</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entiendo</button>
 				</div>
 			</div>
 		</div>

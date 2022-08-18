@@ -31,6 +31,8 @@ const labelPrecio = document.getElementById('lblPrecio');
 const itemMenu = document.createElement('li');
 itemMenu.className = 'selectProducto list-group-item d-flex justify-content-between align-items-center';
 itemMenu.setAttribute('onclick','seleccionarProducto(this)');
+itemMenu.style.cursor = 'pointer';
+itemMenu.style.marginBottom = '2px';
 //itemMenu.style.borderTopWidth = '1px';
 //construyendo item menu con precio
 /*
@@ -42,6 +44,8 @@ itemMenu.setAttribute('onclick','seleccionarProducto(this)');
 const itemMenuConPrecio = document.createElement('li');
 itemMenuConPrecio.className = 'selectProducto list-group-item d-flex justify-content-between align-items-center';
 itemMenuConPrecio.setAttribute('onclick','seleccionarProducto(this)');
+itemMenuConPrecio.style.cursor = 'pointer';
+itemMenuConPrecio.style.marginBottom = '2px';
 //itemMenuConPrecio.style.borderTopWidth = '1px';
 const spanPrecio = document.createElement('span');
 spanPrecio.className = 'badge bg-primary rounded-pill';
@@ -174,11 +178,35 @@ function cambiarTipoProducto(tipo){
     }
 }
 
-function cambiarPrecio(){
-    precioMenu = document.getElementById('inputPrecio').value;
-    labelPrecio.innerText = '';
-    labelPrecio.innerText = "s/." + extraerUnidadDecima(precioMenu)[0]+'.'+extraerUnidadDecima(precioMenu)[1];
-    draw();
+
+function indicarCambioSeleccionElemento(elemento,tipo){
+    if(tipo == null){
+        elemento.classList.add('gradient-border');
+        setTimeout(function(){
+            elemento.classList.remove('gradient-border');
+        },2000);
+    }
+    
+}
+
+function cambiarPrecio(e){
+    if(document.getElementById('frmCambiarPrecio').checkValidity()){
+       e.preventDefault();
+        precioMenu = document.getElementById('inputPrecio').value;
+        labelPrecio.innerText = '';
+        labelPrecio.innerText = "S/. " + extraerUnidadDecima(precioMenu)[0]+'.'+extraerUnidadDecima(precioMenu)[1];
+        /*labelPrecio.classList.add('gradient-border');
+        setTimeout(function(){
+            labelPrecio.classList.remove('gradient-border');
+        },2000);
+        */
+        indicarCambioSeleccionElemento(labelPrecio,null);
+        draw(); 
+    }
+    else{
+        document.getElementById('frmCambiarPrecio').reportValidity();
+    }
+    
 }
 function limpiarSeccionMenu(limpio){
     var menu = itemMenu.cloneNode(true);
@@ -192,15 +220,19 @@ function limpiarSeccionMenu(limpio){
     selectExtras.innerHTML = '';
     selectBebidas.innerHTML = '';
     if(arrayEntradas.length == 0){
+        console.log('entradas');
         selectEntradas.appendChild(menu.cloneNode(true));
     }
-    else if(arraySegundos.length == 0){
+    if(arraySegundos.length == 0){
+        console.log('segundos');
         selectSegundos.appendChild(menu.cloneNode(true));
     }
-    else if(arrayExtras.length == 0){
+    if(arrayExtras.length == 0){
+        console.log('extras');
         selectExtras.appendChild(menu.cloneNode(true));
     }
-    else if(arrayBebidas.length == 0){
+    if(arrayBebidas.length == 0){
+        console.log('bebidas');
         selectBebidas.appendChild(menu.cloneNode(true));
     }
 }
@@ -297,7 +329,7 @@ function extraerUnidadDecima(numero){
 }
 function seleccionarProducto(element){
     if(element.getAttribute('data-posicion') != 'null'){
-        console.log('selecciono');
+        //console.log('selecciono');
         var productos = document.getElementsByClassName('selectProducto');
         for(var i = 0; i < productos.length; i++){
             productos[i].style.boxShadow = '';
@@ -311,10 +343,43 @@ function seleccionarProducto(element){
     }
     
 }
+
+function animarSeleccionProducto(){
+    $('#modalEditar').modal('show');
+        $('#modalEditar').on('hidden.bs.modal', function () {
+            /*selectEntradas.classList.add('gradient-border');
+            selectSegundos.classList.add('gradient-border');
+            selectExtras.classList.add('gradient-border');
+            selectBebidas.classList.add('gradient-border');
+
+
+            //quitar clase borde gradiente
+            setTimeout(function(){
+                selectEntradas.classList.remove('gradient-border')
+                setTimeout(function(){
+                    selectSegundos.classList.remove('gradient-border')
+                    setTimeout(function(){
+                        selectExtras.classList.remove('gradient-border')
+                        setTimeout(function(){
+                            selectBebidas.classList.remove('gradient-border')
+                        },400);
+                    },600);
+                },800);
+            },1000);*/
+            animarAgregarBordeGradiente();
+            setTimeout(function(){
+                animar2AgregarBordeGradiente();
+            },860);
+        });
+}
+
 function editarProducto(){
+    
     if(productoSeleccionado.length > 0){
-        
-        
+        location.hash = '';
+        location.hash = "#contenedorEditorCarta";
+        txtProducto.focus();
+        //document.getElementById('contenedorEditorCarta').setAttribute('tabindex', '0');
         switch(productoSeleccionado[0]){
             case 1:
                 document.getElementById('btnEntrada').click();
@@ -335,12 +400,138 @@ function editarProducto(){
         txtProducto.value = productoSeleccionado[1];
         btnAgregarProducto.value = 'Actualizar';
         btnLimpiar.value = 'Cancelar';
+        document.getElementById('frmMenu').classList.add('gradient-border');
+
+        setTimeout(function(){
+            document.getElementById('frmMenu').classList.remove('gradient-border');
+        },2000);
+        //location.hash = '';
     }
     else{
+        //agregar clase borde gradiente
+        /*setTimeout(function(){
+            selectEntradas.classList.add('gradient-border')
+            setTimeout(function(){
+                selectSegundos.classList.add('gradient-border')
+                setTimeout(function(){
+                    selectExtras.classList.add('gradient-border')
+                    setTimeout(function(){
+                        selectBebidas.classList.add('gradient-border')
+                    },600);
+                },500);
+            },400);
+        },300);*/
+        /*selectEntradas.classList.add('gradient-border');
+            selectSegundos.classList.add('gradient-border');
+            selectExtras.classList.add('gradient-border');
+            selectBebidas.classList.add('gradient-border');
+
+
+            //quitar clase borde gradiente
+            setTimeout(function(){
+                selectEntradas.classList.remove('gradient-border')
+                setTimeout(function(){
+                    selectSegundos.classList.remove('gradient-border')
+                    setTimeout(function(){
+                        selectExtras.classList.remove('gradient-border')
+                        setTimeout(function(){
+                            selectBebidas.classList.remove('gradient-border')
+                        },400);
+                    },600);
+                },800);
+            },1000);*/
+        document.getElementById('modalAlertaError').innerText = 'Seleccione un producto a Editar';
+        /*$('#modalEditar').modal('show');
+        $('#modalEditar').on('hidden.bs.modal', function () {
+            
+            animarAgregarBordeGradiente();
+            setTimeout(function(){
+                animar2AgregarBordeGradiente();
+            },860);
+        });*/
+        animarSeleccionProducto();
         console.error('No hay producto seleccionado');
     }
 }
 
+function agregarTimeOut(element,tiempo){
+    setTimeout(function(){
+        element.classList.remove('gradient-border');
+    },tiempo);
+}
+function animarAgregarBordeGradiente(){
+    var hijosEntradas = selectEntradas.childNodes;
+    var hijosSegundos = selectSegundos.childNodes;
+    var hijosExtras = selectExtras.childNodes;
+    var hijosBebidas = selectBebidas.childNodes;
+    var segundos = 0;
+    for(var hijoEntrada of hijosEntradas){
+        segundos += 50;
+        hijoEntrada.classList.add('gradient-border');
+        agregarTimeOut(hijoEntrada,segundos);
+    }
+    for(var hijoSegundo of hijosSegundos){
+        segundos += 60;
+        hijoSegundo.classList.add('gradient-border');
+        agregarTimeOut(hijoSegundo,segundos);
+    }
+    for(var hijoExtra of hijosExtras){
+        segundos += 80;
+        hijoExtra.classList.add('gradient-border');
+        agregarTimeOut(hijoExtra,segundos);
+    }
+    for(var hijoBebida of hijosBebidas){
+        segundos += 120;
+        hijoBebida.classList.add('gradient-border');
+        agregarTimeOut(hijoBebida,segundos);
+    }
+    console.log(segundos);
+}
+function agregarTimeOut2(element,tiempo){
+    setTimeout(function(){
+        element.classList.add('gradient-border');
+        setTimeout(function(){
+            element.classList.remove('gradient-border');
+        },tiempo - 50);
+    },tiempo);
+}
+function reverseChildNodes(nodesChild){
+    var nodes = [];
+    for(var i = nodesChild.length - 1; i >= 0; i--){
+        nodes.push(nodesChild[i]);
+    }
+    return nodes;
+}
+function animar2AgregarBordeGradiente(){
+    var hijosEntradas = reverseChildNodes(selectEntradas.childNodes);
+    var hijosSegundos = reverseChildNodes(selectSegundos.childNodes);
+    var hijosExtras = reverseChildNodes(selectExtras.childNodes);
+    var hijosBebidas = reverseChildNodes(selectBebidas.childNodes);
+    var segundos = 0;
+    for(var hijoBebida of hijosBebidas){
+        segundos += 80;
+        agregarTimeOut2(hijoBebida,segundos);
+        
+    }
+    //segundos = 0;
+    for(var hijoExtra of hijosExtras){
+        segundos += 50;
+        agregarTimeOut2(hijoExtra,segundos);
+    }
+    //segundos = 0;
+    for(var hijoSegundo of hijosSegundos){
+        segundos += 50;
+        agregarTimeOut2(hijoSegundo,segundos);
+    }
+    //segundos = 0;
+    for(var hijoEntrada of hijosEntradas){
+        segundos += 50;
+        agregarTimeOut2(hijoEntrada,segundos);
+    }
+    
+    
+    
+}
 function limpiarCancelarProducto(setDefault){
     if(btnLimpiar.value == 'Cancelar' || setDefault){
         btnLimpiar.value = 'Limpiar';
@@ -402,6 +593,10 @@ function eliminarProducto(){
         draw();
         escribirMenuHtml();
         limpiarCancelarProducto(true);
+    }
+    else{
+        document.getElementById('modalAlertaError').innerText = 'Seleccione un producto a Eliminar';
+        animarSeleccionProducto();
     }
 }
 function subirPosicionProducto(){
@@ -501,6 +696,18 @@ function subirPosicionProducto(){
                 break;
         }
     }
+    else{
+        document.getElementById('modalAlertaError').innerText = 'Seleccione un producto a Mover';
+        /*$('#modalEditar').modal('show');
+        $('#modalEditar').on('hidden.bs.modal', function () {
+            
+            animarAgregarBordeGradiente();
+            setTimeout(function(){
+                animar2AgregarBordeGradiente();
+            },860);
+        });*/
+        animarSeleccionProducto();
+    }
 }
 function bajarPosicionProducto(){
     if(productoSeleccionado.length > 0){
@@ -599,15 +806,35 @@ function bajarPosicionProducto(){
                 break;
         }
     }
+    else{
+        document.getElementById('modalAlertaError').innerText = 'Seleccione un producto a Mover';
+        /*$('#modalEditar').modal('show');
+        $('#modalEditar').on('hidden.bs.modal', function () {
+            
+            animarAgregarBordeGradiente();
+            setTimeout(function(){
+                animar2AgregarBordeGradiente();
+            },860);
+        });*/
+        animarSeleccionProducto();
+    }
 }
+
+function setPrecio(element){
+    var precio = element.innerHTML;
+    console.log(precio);
+    document.getElementById('inputPrecio').value = precio;
+}
+
+const imagenCarta = new Image();
+imagenCarta.src = "imagenes/imagenCarta.jpg";
 function draw(){
     var BerlinSansFBDemiBold = new FontFace('BerlinSansFBDemiBold', 'url(fonts/BerlinSansFBDemiBold.ttf)');
     BerlinSansFBDemiBold.load().then(function(font){
         document.fonts.add(font);
         var canvasCarta = document.getElementById("canvasCarta");
         if (canvasCarta.getContext) {
-            const imagenCarta = new Image();
-			imagenCarta.src = "imagenes/imagenCarta.jpg";
+            
             var alturaText = 0;
             const ctx = canvasCarta.getContext('2d');
 
