@@ -48,8 +48,8 @@ itemMenuConPrecio.style.cursor = 'pointer';
 itemMenuConPrecio.style.marginBottom = '2px';
 //itemMenuConPrecio.style.borderTopWidth = '1px';
 const spanPrecio = document.createElement('span');
-spanPrecio.className = 'badge bg-primary rounded-pill';
-
+spanPrecio.className = 'badge bg-success rounded-pill';
+spanPrecio.style.fontSize = '14px';
 //funcion para agregar y actualizar producto al menu
 function agregarActualizarProducto(evt){
     
@@ -318,7 +318,7 @@ function escribirMenuHtml(){
             }
         }
         var spanItem = spanPrecio.cloneNode(true);
-        spanItem.innerText = arrayExtras[i][1];
+        spanItem.innerText = "S/." + extraerUnidadDecima(arrayExtras[i][1])[0] + '.' + extraerUnidadDecima(arrayExtras[i][1])[1];
         item.appendChild(spanItem);
         selectExtras.appendChild(item);
     }
@@ -335,7 +335,7 @@ function escribirMenuHtml(){
             }
         }
         var spanItem = spanPrecio.cloneNode(true);
-        spanItem.innerText = arrayBebidas[i][1];
+        spanItem.innerText ="S/." + extraerUnidadDecima(arrayBebidas[i][1])[0] + '.' + extraerUnidadDecima(arrayBebidas[i][1])[1];
         item.appendChild(spanItem);
         selectBebidas.appendChild(item);
     }
