@@ -140,7 +140,8 @@ function agregarActualizarProducto(evt){
             txtPrecio.value = '';
             escribirMenuHtml();
             limpiarCanvas();
-            draw();   
+            draw();
+            indicarCambioSeleccionElemento(null,productoSeleccionado[0])   
         }
         else{
             document.getElementById('frmMenu').reportValidity();
@@ -186,7 +187,42 @@ function indicarCambioSeleccionElemento(elemento,tipo){
             elemento.classList.remove('gradient-border');
         },2000);
     }
-    
+    else{
+        switch(tipo){
+            case 1:
+                for(var i = 0; i < selectEntradas.childNodes.length; i++){
+                    if(i == productoSeleccionado[3]){
+                        selectEntradas.childNodes[i].classList.add('gradient-border');
+                        agregarTimeOut(selectEntradas.childNodes[i],2000);
+                    }
+                }
+                break;
+            case 2:
+                for(var i = 0; i < selectSegundos.childNodes.length; i++){
+                    if(i == productoSeleccionado[3]){
+                        selectSegundos.childNodes[i].classList.add('gradient-border');
+                        agregarTimeOut(selectSegundos.childNodes[i],2000);
+                    }
+                }
+                break;
+            case 3:
+                for(var i = 0; i < selectExtras.childNodes.length; i++){
+                    if(i == productoSeleccionado[3]){
+                        selectExtras.childNodes[i].classList.add('gradient-border');
+                        agregarTimeOut(selectExtras.childNodes[i],2000);
+                    }
+                }
+                break;
+            case 4:
+                for(var i = 0; i < selectBebidas.childNodes.length; i++){
+                    if(i == productoSeleccionado[3]){
+                        selectBebidas.childNodes[i].classList.add('gradient-border');
+                        agregarTimeOut(selectBebidas.childNodes[i],2000);
+                    }
+                }
+                break;
+        }
+    }
 }
 
 function cambiarPrecio(e){
