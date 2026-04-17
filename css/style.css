@@ -63,3 +63,26 @@
           background-position: 0% 50%;
       }
   }
+
+  /* Animaciones para mensajes de éxito */
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+          transform: translateY(-10px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  @keyframes fadeOut {
+      from {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      to {
+          opacity: 0;
+          transform: translateY(-10px);
+      }
+  }
